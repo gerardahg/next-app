@@ -1,2 +1,2 @@
 # next-app
- Testing the nextjs y github
+ Testing nextjs and github
