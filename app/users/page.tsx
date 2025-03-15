@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import UserTable from './UserTable'
+import Link from 'next/link'
 
 //Declaramos una interface Props, con el atributo searchParam que contiene un objeto sortOrder de tipo string, este será el objeto que entra por URL
 interface Props {
@@ -11,8 +12,13 @@ const UsersPage = ({ searchParams: { sortOrder } } : Props) => {
   return (
     <>
       <h1>Users</h1>
-      {/* Aqui llamamos a nuestro contenedor y le pasamos sortOrder por parametro*/}
-      <UserTable sortOrder = { sortOrder }  />
+      <Link href="/users/new" className='btn'>New User</Link>
+
+      {/* Suspense es una etiqueta que va a mostrar su contenido mientras se carga el componente de adentro */}
+      <Suspense fallback={<p>Loading...</p>}>
+        {/* Aqui llamamos a nuestro contenedor y le pasamos sortOrder por parametro*/}
+        <UserTable sortOrder = { sortOrder }  />
+      </Suspense>
     </>
   )
 }
