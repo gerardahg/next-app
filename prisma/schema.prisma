@@ -4,6 +4,8 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+//Este es el archivo que define la base de datos, para migrar hay que ejecutar: npx prisma migrate dev
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,5 +21,12 @@ model User {
   name         String
   followers    Int      @default(0)
   isActive     Boolean  @default(true)
+  registeredAt DateTime @default(now())
+}
+
+model Product {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique
+  price        Int
   registeredAt DateTime @default(now())
 }
